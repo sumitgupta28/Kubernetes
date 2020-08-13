@@ -1,0 +1,36 @@
+# create replica Set
+#run -> kubectl create -f replica-set.yaml
+apiVersion: app/v1
+kind: ReplicaSet
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: nginx-pod-replica-set
+      labels:
+        type: front-end ## this label is given as selector  
+        tier: fornt-end
+        developedBy: Sumit Gupta
+        enviroment: dev 
+    spec:
+      containers:
+        - name: nginx-containers
+          image: nginx
+  selector:
+    matchLabels:
+      type: fornt-end
+
+# Get the list of Replicas set
+# run --> kubectl get replicaset
+
+
+#scale the replicaSet
+# Option 1
+# 1. update the replica set defination file 
+# 2. run -> kubectl replace -f replica-set.yaml       
+# Option 2
+# 1. run -> kubectl scale --replicas=6 replicaset nginx-pod-replica-set
+# here replicaset is the <<Object Type>> and nginx-pod-replica-set is <<Replicas Set Name>>         
+
+# Delete the replica set
+# run --> kubectl delete replicaset nginx-pod-replica-set

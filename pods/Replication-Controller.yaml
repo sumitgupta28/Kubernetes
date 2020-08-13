@@ -1,0 +1,20 @@
+#run -> kubectl create -f Replication-Controller.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx-pod
+
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: nginx-pod
+    spec:
+      containers:
+      - name: test-container
+        image: nginx
+
