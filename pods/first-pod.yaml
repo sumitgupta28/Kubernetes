@@ -6,7 +6,6 @@ metadata:
   labels:
     type: front-end
     tier: fornt-end
-    developedBy: Sumit Gupta
     enviroment: dev 
 spec:
   containers:
