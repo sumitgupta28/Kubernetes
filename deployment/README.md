@@ -194,3 +194,9 @@ Events:
   Normal  ScalingReplicaSet  3m28s  deployment-controller  Scaled up replica set nginx-deployment-d46f5678b to 4
 
 ```
+
+**For other topic see here** 
+- [Edit Deployment - Update Deployment via edit Deployment Command](Update-image-edit-deployment.md)
+- [Edit Deployment - Update Deployment via set  Command](Update-image-set-commandy.md)
+- [Rollback Deployment ](rollback-deployment.md)
+
