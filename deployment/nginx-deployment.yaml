@@ -1,3 +1,7 @@
+# Create Deployment 
+# deployment is similer to replica set except the kind which is Deployment.
+#run -> kubectl create -f nginx-deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +20,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:1.14.2
+        image: nginx
         ports:
         - containerPort: 80
