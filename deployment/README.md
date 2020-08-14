@@ -81,7 +81,8 @@ nginx-pod-deployment-67bdfb4846-pvdcm   1/1     Running   0          24m
 ## Lets start fresh  to see more !!! ###
 
 - **Create a new Deployment**
-'''
+
+```
 $ cat nginx-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -105,7 +106,7 @@ spec:
         ports:
         - containerPort: 80
 master $
-'''
+```
 
 - **Create a new Deployment**
 ```
