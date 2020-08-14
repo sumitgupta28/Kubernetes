@@ -105,7 +105,7 @@ spec:
         image: nginx
         ports:
         - containerPort: 80
-master $
+
 ```
 
 - **Create a new Deployment**
@@ -114,7 +114,7 @@ $ kubectl create -f nginx-deployment.yaml
 deployment.apps/nginx-deployment created
 ```
 
-- **As Soon as deployment is created run <<rollout status>> command**
+- **As Soon as deployment is created run *rollout status* command**
 1. This will show the current status of deployment 
 2. You can see the status of each pods 
 3. up on completion you see "Successfully rolled out"
@@ -128,11 +128,69 @@ Waiting for deployment "nginx-deployment" rollout to finish: 3 of 4 updated repl
 deployment "nginx-deployment" successfully rolled out
 ```
 
-- **View the history of deployment with <<rollout history>> **
+- **View the history of deployment with *rollout history* command **
 
 ```
 $ kubectl rollout history  deployment.apps/nginx-deployment
 deployment.apps/nginx-deployment
 REVISION  CHANGE-CAUSE
 1         <none>
+```
+
+Here you can seee **CHANGE-CAUSE** is empty as record is not enabled. let re-create with record enabled.
+
+- ** create new deployment with *--record*  
+```
+$ kubectl create -f nginx-deployment.yaml --record
+deployment.apps/nginx-deployment created
+```
+
+- **view history with *rollout history* comamnd and CHANGE-CAUSE is showing now.**    
+```
+$ kubectl rollout history  deployment.apps/nginx-deployment
+deployment.apps/nginx-deployment
+REVISION  CHANGE-CAUSE
+1         kubectl create --filename=nginx-deployment.yaml --record=true
+```
+
+- **describe command will also show the *Change-Cuase* under *Annotations*** .    
+
+*Annotations:            deployment.kubernetes.io/revision: 1*
+*kubernetes.io/change-cause: kubectl create --filename=nginx-deployment.yaml --record=true*
+
+```
+$ kubectl describe  deployment.apps/nginx-deployment
+Name:                   nginx-deployment
+Namespace:              default
+CreationTimestamp:      Fri, 14 Aug 2020 15:52:47 +0000
+Labels:                 app=nginx
+Annotations:            deployment.kubernetes.io/revision: 1
+                        kubernetes.io/change-cause: kubectl create --filename=nginx-deployment.yaml --record=true
+Selector:               app=nginx
+Replicas:               4 desired | 4 updated | 4 total | 4 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=nginx
+  Containers:
+   nginx:
+    Image:        nginx
+    Port:         80/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   nginx-deployment-d46f5678b (4/4 replicas created)
+Events:
+  Type    Reason             Age    From                   Message
+  ----    ------             ----   ----                   -------
+  Normal  ScalingReplicaSet  3m28s  deployment-controller  Scaled up replica set nginx-deployment-d46f5678b to 4
+
 ```
