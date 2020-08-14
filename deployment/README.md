@@ -1,7 +1,7 @@
-** Deployment **
+#  Deployment 
 
-deployment-yaml
-`
+
+```
 apiVersion: apps/v1 ## version is apps/v1
 kind: Deployment
 metadata:
@@ -26,15 +26,18 @@ spec:
     matchLabels:
       type: front-end ## this label is given as selector  
       enviroment: dev
-'
+```
 
 
 ** create Deployment **
-master $ kubectl create -f first-deployment.yml
+```
+$ kubectl create -f first-deployment.yml
 deployment.apps/nginx-pod-deployment created
+```
 
 ** list all the objects created post deployment creation **
-master $ kubectl get all
+```
+$ kubectl get all
 NAME                                        READY   STATUS              RESTARTS   AGE
 pod/nginx-pod-deployment-67bdfb4846-l2vn6   0/1     ContainerCreating   0          9s
 pod/nginx-pod-deployment-67bdfb4846-pvdcm   0/1     ContainerCreating   0          9s
@@ -47,3 +50,4 @@ deployment.apps/nginx-pod-deployment   0/2     2            0           10s
 
 NAME                                              DESIRED   CURRENT   READY   AGE
 replicaset.apps/nginx-pod-deployment-67bdfb4846   2         2         0       9s
+```
