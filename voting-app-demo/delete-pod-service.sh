@@ -25,4 +25,5 @@ kubectl delete service redis
 # delete redis pod with name : redis
 kubectl delete pod redis
 
-
+# verify pods and services are deleted 
+kubectl get pod,service

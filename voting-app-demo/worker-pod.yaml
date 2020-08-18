@@ -8,5 +8,4 @@ metadata:
 spec:
   containers:
     - name: worker-app
-      image: dockersamples/examplevotingapp_worker:latest
-             
+      image: kodekloud/examplevotingapp_worker:v1

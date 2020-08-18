@@ -24,3 +24,6 @@ kubectl create -f voting-app-service.yaml
 
 # create worker-app-pod with name : worker-app-pod
 kubectl create -f worker-pod.yaml
+
+# list the created pods and service
+kubectl get pod,service
