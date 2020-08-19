@@ -299,3 +299,15 @@ status:
   qosClass: BestEffort
   startTime: "2020-08-19T15:35:16Z"
   ```
+  - edit, use edit command to , any pod details 
+  - edit command , open the pod spec yaml in vi/vim editor and allow to change pod defination. 
+
+  ```
+  $ kubectl edit pod nginx-pod
+  ``` 
+
+  - At last, lets delete the pod
+  ```
+  $ kubectl delete pod nginx-pod
+    ``` 
+  
