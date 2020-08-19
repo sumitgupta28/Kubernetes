@@ -8,4 +8,4 @@ metadata:
 spec:
   containers:
     - name: worker-app
-      image: bretfisher/examplevotingapp_worker:java
+      image: kodekloud/examplevotingapp_worker:v1
