@@ -1,6 +1,6 @@
 
-# delete postgres service with name : postgres
-kubectl delete service postgres
+# delete db service with name : db
+kubectl delete service db
 
 # delete redis service with name : redis
 kubectl delete service redis

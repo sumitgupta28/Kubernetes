@@ -17,7 +17,7 @@ kubectl delete pod voting-app-pod
 kubectl delete pod postgres
 
 # delete postgres service with name : postgres
-kubectl delete service postgres
+kubectl delete service db
 
 # delete redis service with name : redis
 kubectl delete service redis
