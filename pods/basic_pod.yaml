@@ -1,13 +1,13 @@
 #run -> kubectl create -f basic-pod.yaml
 
 apiVersion: v1
-kind: Pod
+kind: Pod ## kind as POD
 metadata:
-  name: nginx-pod
+  name: nginx-pod ## Name of pod
   labels:
-    app: nginx-pod
+    app: nginx-pod ## lables for pod
 spec:
   containers:
-    - name: test-container
-      image: nginx
+    - name: test-container ## container name
+      image: nginx  ## image 
 
