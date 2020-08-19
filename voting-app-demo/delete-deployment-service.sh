@@ -27,4 +27,4 @@ kubectl delete deployment postgres-deployment
 kubectl delete deployment redis-deployment
 
 # verify pods and services are deleted 
-kubectl get pod,deployment,service
+kubectl get pods,deployment,service

@@ -26,4 +26,4 @@ kubectl create -f voting-app-service.yaml
 kubectl create -f worker-deployment.yaml
 
 # list the created pods and service
-kubectl get pod,service
+kubectl get pods,deployment,service
