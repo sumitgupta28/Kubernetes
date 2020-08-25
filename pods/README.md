@@ -309,5 +309,191 @@ status:
   - At last, lets delete the pod
   ```
   $ kubectl delete pod nginx-pod
-    ``` 
+  ```  
+
+
+## Create POD definition file and --dry-run ##
+
+
+- add --dry-run parameter to just validate the command, this won't create a new pod  
+- add -o (output) yaml > nginx-pod.yaml to store the pod defination yaml into nginx-pod.yaml file   
+
+  ```
+  $ kubectl run nginx-web-server --image nginx --dry-run=client -o yaml > nginx-pod.yaml
+  ```
+
+- view the content of nginx-pod.yaml file 
+
+  ```
+  $ cat nginx-pod.yaml
+  apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: null
+    labels:
+      run: nginx-web-server
+    name: nginx-web-server
+  spec:
+    containers:
+    - image: nginx
+      name: nginx-web-server
+      resources: {}
+    dnsPolicy: ClusterFirst
+    restartPolicy: Always
+  status: {}
+  ```
+- If you are not given a pod definition file, you may extract the definition to a file using the below command:
   
+  ```
+   format 
+   $ kubectl get pod <POD-NAME> -o yaml > <POD-DEF-FILE-NAME>.yaml
+
+   $ kubectl get pod nginx-web-server -o yaml > nginx-pod-def.yaml
+   $ cat nginx-pod-def.yaml
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      creationTimestamp: "2020-08-20T03:47:23Z"
+      labels:
+        run: nginx-web-server
+      managedFields:
+      - apiVersion: v1
+        fieldsType: FieldsV1
+        fieldsV1:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:run: {}
+          f:spec:
+            f:containers:
+              k:{"name":"nginx-web-server"}:
+                .: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:enableServiceLinks: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+        manager: kubectl
+        operation: Update
+        time: "2020-08-20T03:47:23Z"
+      - apiVersion: v1
+        fieldsType: FieldsV1
+        fieldsV1:
+          f:status:
+            f:conditions:
+              k:{"type":"ContainersReady"}:
+                .: {}
+                f:lastProbeTime: {}
+                f:lastTransitionTime: {}
+                f:message: {}
+                f:reason: {}
+                f:status: {}
+                f:type: {}
+              k:{"type":"Initialized"}:
+                .: {}
+                f:lastProbeTime: {}
+                f:lastTransitionTime: {}
+                f:status: {}
+                f:type: {}
+              k:{"type":"Ready"}:
+                .: {}
+                f:lastProbeTime: {}
+                f:lastTransitionTime: {}
+                f:message: {}
+                f:reason: {}
+                f:status: {}
+                f:type: {}
+            f:containerStatuses: {}
+            f:hostIP: {}
+            f:startTime: {}
+        manager: kubelet
+        operation: Update
+        time: "2020-08-20T03:47:23Z"
+      name: nginx-web-server
+      namespace: default
+      resourceVersion: "13244"
+      selfLink: /api/v1/namespaces/default/pods/nginx-web-server
+      uid: 04c217af-9c5f-4ced-91e7-6b4aa2f0eb30
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx-web-server
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+          name: default-token-46759
+          readOnly: true
+      dnsPolicy: ClusterFirst
+      enableServiceLinks: true
+      nodeName: node01
+      priority: 0
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: default
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoExecute
+        key: node.kubernetes.io/not-ready
+        operator: Exists
+        tolerationSeconds: 300
+      - effect: NoExecute
+        key: node.kubernetes.io/unreachable
+        operator: Exists
+        tolerationSeconds: 300
+      volumes:
+      - name: default-token-46759
+        secret:
+          defaultMode: 420
+          secretName: default-token-46759
+    status:
+      conditions:
+      - lastProbeTime: null
+        lastTransitionTime: "2020-08-20T03:47:22Z"
+        status: "True"
+        type: Initialized
+      - lastProbeTime: null
+        lastTransitionTime: "2020-08-20T03:47:22Z"
+        message: 'containers with unready status: [nginx-web-server]'
+        reason: ContainersNotReady
+        status: "False"
+        type: Ready
+      - lastProbeTime: null
+        lastTransitionTime: "2020-08-20T03:47:22Z"
+        message: 'containers with unready status: [nginx-web-server]'
+        reason: ContainersNotReady
+        status: "False"
+        type: ContainersReady
+      - lastProbeTime: null
+        lastTransitionTime: "2020-08-20T03:47:23Z"
+        status: "True"
+        type: PodScheduled
+      containerStatuses:
+      - image: nginx
+        imageID: ""
+        lastState: {}
+        name: nginx-web-server
+        ready: false
+        restartCount: 0
+        started: false
+        state:
+          waiting:
+            reason: ContainerCreating
+      hostIP: 172.17.0.14
+      phase: Pending
+      qosClass: BestEffort
+      startTime: "2020-08-20T03:47:22Z"
+  ```
+
+

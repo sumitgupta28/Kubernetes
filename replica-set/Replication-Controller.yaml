@@ -7,8 +7,9 @@ metadata:
     app: nginx-pod
 
 spec:
-  replicas: 2
+  replicas: 2 # number of replicas
   template:
+    ## Pod Defination starts from here 
     metadata:
       name: nginx-pod
       labels:

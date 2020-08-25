@@ -1,0 +1,22 @@
+# this specification shows how to use inject configation directly into pod. 
+# run kubectl create -f simple-webapp-color-ref-config-2.yaml
+# image kodekloud/webapp-color use APP_COLOR env variable. 
+# APP_COLOR variable will be pulled from configmap app-config.
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: simple-web-app-color
+  labels:
+    type: simple-webapp-color
+spec:
+  containers:
+    - name: simple-web-app-color
+      image: kodekloud/webapp-color
+      ports:
+        - containerPort: 8080
+      env:
+        - name: APP_COLOR ## enviroment variable name
+          valueFrom:
+              configMapKeyRef:
+                key: APP_COLOR ## key Name to be reffered from app-config
+                name: app-config

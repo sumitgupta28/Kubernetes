@@ -1,0 +1,17 @@
+# this specification shows how to use inject configation directly into pod. 
+# run simple-web-app-color.yaml
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: simple-web-app-color
+  labels:
+    type: simple-webapp-color
+spec:
+  containers:
+    - name: simple-web-app-color
+      image: kodekloud/webapp-color
+      ports:
+        - containerPort: 8080
+      env:
+        - name: APP_COLOR
+          value: pink

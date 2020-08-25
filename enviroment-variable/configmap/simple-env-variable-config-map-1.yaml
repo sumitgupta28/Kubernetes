@@ -1,0 +1,17 @@
+# this specification shows how to use inject configation from a config map.
+# for config map refer to simple-config-map.yaml 
+
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: simple-web-app-color
+spec:
+  containers:
+    - name: simple-web-app-color
+      image: simple-web-app-color
+      ports:
+        - containerPort: 8080
+      envFrom:
+        - configMapRef:
+            name: webapp-config-map
+      

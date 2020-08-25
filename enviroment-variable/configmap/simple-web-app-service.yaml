@@ -1,15 +1,14 @@
+## run simple-web-app-service.yaml
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: voting-service
-  labels:
-    name: voting-service
-    app: demo-voting-app
+  name: simple-webapp-color-service
 spec:
   type: NodePort
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 8080
+      targetPort: 8080
       nodePort: 30005
   selector:
     type: simple-webapp-color

@@ -195,8 +195,59 @@ Events:
 
 ```
 
+
+
+
 **For other topic see here** 
 - [Edit Deployment - Update Deployment via edit Deployment Command](Update-image-edit-deployment.md)
 - [Edit Deployment - Update Deployment via set  Command](Update-image-set-commandy.md)
 - [Rollback Deployment ](rollback-deployment.md)
 
+**Deployment**
+
+Create a deployment
+```
+kubectl create deployment --image=nginx nginx
+```
+Generate Deployment YAML file (-o yaml). Don't create it(--dry-run)
+```
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+```
+*IMPORTANT:*
+
+kubectl create deployment does not have a --replicas option. You could first create it and then scale it using the kubectl scale command.
+
+Save it to a file - (If you need to modify or add some other details)
+```
+kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
+```
+You can then update the YAML file with the replicas or any other field before creating the deployment.
+Example
+```
+$ kubectl create deployment --image=nginx nginx --dry-run=client -o yaml > nginx-deployment.yaml
+$ cat nginx-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
+``

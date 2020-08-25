@@ -2,6 +2,7 @@
 #run -> kubectl create -f replica-set.yaml
 apiVersion: apps/v1 ## version is apps/v1
 kind: ReplicaSet
+## metadata for ReplicaSet
 metadata:
   name: nginx-pod-replica-set
   labels:
@@ -11,6 +12,7 @@ metadata:
 spec:
   replicas: 2
   template:
+    ## metadata for Pod
     metadata:
       name: nginx-pod-replica-set
       labels:

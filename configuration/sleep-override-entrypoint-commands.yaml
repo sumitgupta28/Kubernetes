@@ -1,0 +1,14 @@
+### $ docker run --name=sleep10 unbuntu-sleepr:latest 10
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sleep-default
+
+spec:
+  containers:
+    - name: sleep-default
+      image: unbuntu-sleepr:latest
+      command:
+        - "sleep"
+        - "10"
