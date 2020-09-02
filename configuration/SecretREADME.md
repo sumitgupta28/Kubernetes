@@ -149,7 +149,75 @@ Here are the options to create secret
 
 ## Inject Secret into POD ##
 
+- to run the exmple run the create below objects 
+    - mysql-pod.yaml
+    - mysql-service.yaml
+    - simple-secret.yaml
+    - simple-webapp-mysql-ref-Pod.yaml
+    - simple-webapp-mysql-service.yaml
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-webapp-mysql
+  labels:
+    type: simple-webapp-mysql
+spec:
+  containers:
+    - name: simple-webapp-mysql
+      image: kodekloud/simple-webapp-mysql
+      ports:
+        - containerPort: 8080
+      #envFrom:
+      #- secretRef:
+      #    name: db-secret
+      env:
+        - name: DB_Host
+          valueFrom:
+            secretKeyRef:
+              key: DB_Host
+              name: db-secret
+        - name: DB_Password
+          valueFrom:
+            secretKeyRef:
+              key: DB_Password
+              name: db-secret
+        - name: DB_User
+          valueFrom:
+            secretKeyRef:
+              key: DB_User
+              name: db-secret
+
 ```
 
 
+## Inject Secret into POD as Volume ##
+
+- Create secret ( refer to simple-secret.yaml )
+```
+$ kubectl create -f simple-secret.yaml
+secret/db-secret created
+
+```
+- Create POD ( refer to nginx-secret-as-volume.yaml )
+```
+$ kubectl create -f nginx-secret-as-volume.yaml
+pod/nginx-pod created
+```
+
+- List POD and Login into pod using exec command and view the secrets. 
+```
+$ kubectl get pod
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          113s
+
+$ kubectl exec -it nginx-pod bash
+
+root@nginx-pod:/# cat /opt/secret/..data/DB_Host
+sql01
+root@nginx-pod:/# cat /opt/secret/..data/DB_Password
+password123
+root@nginx-pod:/# cat /opt/secret/..data/DB_User
+root
 ```

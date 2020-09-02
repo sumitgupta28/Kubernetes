@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-web-server
+  labels:
+    app: nginx-web-server
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: nginx-web-server
+  template:
+    metadata:
+      name: nginx-web-server
+      labels:
+        app: nginx-web-server
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: nginx

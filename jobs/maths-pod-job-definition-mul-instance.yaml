@@ -1,0 +1,17 @@
+## this definition file is to show how to create 3 instance of the job
+## run --> kubectl create -f maths-pod-job-definition-mul-instance.yaml
+
+apiVersion: batch/v1 
+kind: Job
+metadata:
+  name: maths-add-job
+spec:
+  completions: 3
+  template:
+    spec:
+      containers:
+        - name: maths-pod
+          image: ubuntu
+          command: ['expr','3','+','2']
+      restartPolicy: Never
+        

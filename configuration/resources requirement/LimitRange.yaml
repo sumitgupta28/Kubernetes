@@ -1,0 +1,19 @@
+## this specifications show how to define limit range for a namespece. 
+## Container is given a default CPU request of 0.5 and a default CPU limit of 1.
+## Container is given a default memory request of 256Mi and a default memory limit of 512Mi.
+## run --> kubectl apply -f LimitRange.yaml --namespace=<<NAMESPACE_NAME>>
+
+apiVersion: v1 
+kind: LimitRange
+metadata:
+  name: limit-range
+spec:
+  limits:
+  - default:
+      memory: 512Mi
+      cpu: 1
+    defaultRequest:
+      memory: 256Mi
+      cpu: 0.5 
+    type: Container
+

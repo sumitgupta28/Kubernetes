@@ -8,8 +8,6 @@ Docker Containers for this application are used from kodekloud
 - kodekloud/examplevotingapp_vote:v1
 - kodekloud/examplevotingapp_worker:v1
 
-
-
 - **via Pod-Service** 
 this is how the applications will look like with pod and services
 ![alt](pod-service.jpg)

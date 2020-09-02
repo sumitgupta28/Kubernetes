@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-deployment
+  labels:
+    type : web-service
+spec:
+  selector:
+    matchLabels:
+      type: web-service
+  template:
+    metadata:
+      name: spring-service-pod
+      labels:
+        type: web-service
+    spec:
+      containers:
+        - name: spring-service-pod
+          image: springio/gs-spring-boot-docker
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+              initialDelaySeconds: 5
+              periodSeconds: 0
+              httpGet:
+                path: /
+                port: 8080
+
+          livenessProbe:
+              httpGet:
+                path: /
+                port: 8080
+        
+
+

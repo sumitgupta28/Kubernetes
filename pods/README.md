@@ -340,7 +340,6 @@ status:
       resources: {}
     dnsPolicy: ClusterFirst
     restartPolicy: Always
-  status: {}
   ```
 - If you are not given a pod definition file, you may extract the definition to a file using the below command:
   

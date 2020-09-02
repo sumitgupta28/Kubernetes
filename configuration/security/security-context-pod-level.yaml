@@ -1,0 +1,21 @@
+# this specification shows how to set user at pod level  
+# run kubectl create -f security-context-pod-level.yaml
+
+apiVersion: v1 
+kind: Pod
+metadata:
+  name: web-pod
+ 
+spec:
+  securityContext: # this will be applied at POD level 
+    runAsUser: 1000 # here 1000 is an non root user.
+  containers:
+    - name: ubuntu 
+      image: ubuntu
+      command:
+        - "sleep"
+        - "4800"
+      securityContext:
+          capabilities:
+            add:
+              - "MAC_ADMIN"

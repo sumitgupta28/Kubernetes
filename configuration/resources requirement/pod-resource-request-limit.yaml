@@ -1,0 +1,22 @@
+## this specification shows how to define request and limits for resource (cpu & memory)
+## in this exmample nginx web-server will have initial memory of 1Gi and cpu 1 as per the request
+## and it can use maximum (limit) 2Gi memory and 2 cpu.
+
+## run --> kubectl create -f pod-resource-request-limit.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-web-server
+spec:
+  containers:
+    - name: ngxin-web-server
+      image: nginx
+      resources:
+          requests:
+            memory: "1Gi"
+            cpu: 1
+          limits:
+            memory: "2Gi"
+            cpu: 2
+            

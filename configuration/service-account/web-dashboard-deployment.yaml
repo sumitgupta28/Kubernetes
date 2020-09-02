@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-dashboard
+
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: web-dashboard
+      labels:
+        type: web-dashboard
+    spec:
+      serviceAccountName: dashboard-sa
+      automountServiceAccountToken: false
+      containers:
+        - name: web-dashboard
+          image: kodekloud/my-kubernetes-dashboard
+  selector:
+    matchLabels:
+      type: web-dashboard

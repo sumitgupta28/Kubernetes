@@ -1,5 +1,5 @@
 # Create Service 
-#run -> kubectl create -f node-port-service.yaml
+#run -> kubectl create -f web-dashboard-node-port-service.yaml
 
 apiVersion: v1
 kind: Service
@@ -9,13 +9,13 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 80 # service port
+    - port: 8080
       nodePort: 30008 # port for external access. 
-      targetPort: 80 # pod port 
+      targetPort: 8080 # pod port 
   selector: 
     # below labels are from pod defination.
     # this link service to the pods.   
-    type: web-dashboard
+    app: web-dashboard
 
 
 # test https://172.17.0.15:30008

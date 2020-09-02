@@ -1,0 +1,21 @@
+kind: Pod
+apiVersion: v1 
+metadata:
+  name: random-number-generator
+spec:
+  containers:
+    - name: alpine-random-number-generator
+      image: alpine
+      command: ["/bin/bash","-c"]
+      args: ["shuf -i 0-100 -n 1 >> /opt/number.out"]
+      ### place where file number.out will be stored
+      volumeMounts:
+        - mountPath: /opt
+          name: data-volume 
+      
+  volumes:
+    - name: data-volume
+      hostPath:
+          ### place where file number.out will be stored on host
+          path: /data
+          type: Directory

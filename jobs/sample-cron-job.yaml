@@ -1,0 +1,19 @@
+## this definition file is to show how to create a cron job
+## run --> kubectl create -f reporting-cron-job
+## here schedule */1 * * * * , ensure job will run for every 1 min
+
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: reporting-cron-job
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: maths-pod
+            image: ubuntu
+            command: ['expr','3','+','2']
+          restartPolicy: Never 
+  schedule: "*/1 * * * *"

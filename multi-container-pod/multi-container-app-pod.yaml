@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+  labels:
+    name: app
+spec:
+  containers:
+  - image: kodekloud/event-simulator
+    name: app
+    volumeMounts:
+    - mountPath: /log
+      name: log-volume
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-mmdcz
+      readOnly: true
+  - image: kodekloud/filebeat-configured
+    name: sidecar
+    volumeMounts:
+      - mountPath: /var/log/event-simulator/
+        name: log-volume
+  volumes:
+  - hostPath:
+      path: /var/log/webapp
+      type: DirectoryOrCreate
+    name: log-volume
+  - name: default-token-mmdcz
+    secret:
+      defaultMode: 420
+      secretName: default-token-mmdcz
