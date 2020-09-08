@@ -8,7 +8,7 @@
 
 lets create a pod to pass the env variable APP_COLOR
 
-'''
+```
 apiVersion: v1
 kind: Pod 
 metadata:
@@ -23,7 +23,7 @@ spec:
       env:
         - name: APP_COLOR
           value: pink
-'''
+```
 
 value can be pulled from **Config Map** 
 - set value in pod defination file 
@@ -51,6 +51,8 @@ value can be pulled from **Config Map**
 ## Configure a Pod to Use a ConfigMap ##
  
 - ConfigMaps allow you to decouple configuration artifacts from image content to keep containerized applications portable.
+
+![config-map-secrets](./config-map-secrets.png)
 
 - ## Create a Config Map ## 
 
