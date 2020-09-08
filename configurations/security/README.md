@@ -54,6 +54,5 @@ $ docker run --user=sumit --cap-drop MAC_ADMIN ubuntu sleep 3600
 
 see 
 - [security-context-pod-level.yaml](security-context-pod-level.yaml)
-- [security-context-pod-level copy.yaml](security-context-pod-level copy.yaml)
 
 

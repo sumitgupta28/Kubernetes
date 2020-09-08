@@ -21,20 +21,22 @@ To use a secret, a Pod needs to reference the secret. A secret can be used with 
 - ## Create a Secrets ## 
 
 - Delcarative [using a configmap defination file]
-        ``` 
-            apiVersion: v1
-            kind: Secret
-            metadata:
-            name: app-secret-config
-            data:
-            username: cmFuZG9tZS1wYXNzd29yZAo= # base64 encoded user name 
-            password: cmFuZG9tZS1wYXNzd29yZAo= # base64 encoded password
+``` 
+apiVersion: v1
+kind: Secret
+metadata:
+name: app-secret-config
+data:
+username: cmFuZG9tZS1wYXNzd29yZAo= # base64 encoded user name 
+password: cmFuZG9tZS1wYXNzd29yZAo= # base64 encoded password
+```
 
-            master $ kubectl create -f simple-secret.yaml
-            secret/app-secret-config created
-            master $ kubectl get secrets -f simple-secret.yaml -o yaml
-            error: when paths, URLs, or stdin is provided as input, you may not specify resource arguments as well
-            master $ kubectl get secrets app-secret-config -o yaml
+```
+$ kubectl create -f simple-secret.yaml
+secret/app-secret-config created
+
+$ kubectl get secrets app-secret-config -o yaml
+
             apiVersion: v1
             data:
             password: cmFuZG9tZS1wYXNzd29yZAo=
@@ -60,12 +62,12 @@ To use a secret, a Pod needs to reference the secret. A secret can be used with 
             selfLink: /api/v1/namespaces/default/secrets/app-secret-config
             uid: 69e8b863-4457-43c9-af99-4872ce6e878e
             type: Opaque
-        ```   
+``` 
 
 - imperative 
 Here are the options to create secret
 
-        ```
+```
         $ kubectl create secret --help
         Create a secret using specified subcommand.
 
@@ -73,11 +75,11 @@ Here are the options to create secret
         docker-registry Create a secret for use with a Docker registry
         generic         Create a secret from a local file, directory or literal value
         tls             Create a TLS secret
-        ```
+```
 
         **Create Secret from File**
 
-        ```
+```
         $ echo -n 'admin' > ./username.txt
         $ echo -n '1f2d1e2e67df' > ./password.txt
 
@@ -110,11 +112,11 @@ Here are the options to create secret
         selfLink: /api/v1/namespaces/default/secrets/my-sample-app-secret
         uid: a8292c5c-535e-40d7-9dda-e479d2eb71d5
         type: Opaque
-        ```
+```
 
         **Create Secret from literal**
 
-        ```
+```
         $ kubectl create secret generic my-sample-app-secret1 --from-literal=password=sameple-password
         secret/my-sample-app-secret1 created
         
@@ -145,7 +147,8 @@ Here are the options to create secret
         selfLink: /api/v1/namespaces/default/secrets/my-sample-app-secret1
         uid: d77d8c18-0d80-4021-8fab-8b6d9a28621a
         type: Opaque
-        ```
+
+```
 
 ## Inject Secret into POD ##
 
