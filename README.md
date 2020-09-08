@@ -10,18 +10,22 @@
 
 - [Replica Set](/replica-set/README.md)
 - [Deployments](/deployment/README.md)
+- [Multi Container Pod](/multi-container-pod/README.md)
 
 - [Namespace](/namespace/README.md)
 - [Services](/service/README.md)
+
 - [Jobs](/jobs/README.md)
+
 - [Networking](/networking/README.md)
 - [Observability](/observability/README.md)
-- [Multi Container Pod](/multi-container-pod/README.md)
+
 - [Volumes](/volumes/README.md)
+
 - [Stateful Sets](/stateful-sets/README.md)
 - [Ingress Network](/ingress-network/README.md)
 
 
-X. [Imperative Commands](/Imperative-commands.md)
+- [Imperative Commands](/Imperative-commands.md)
 
 
