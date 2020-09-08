@@ -1,0 +1,14 @@
+## this PersistentVolume definition file shows how to create a PersistentVolume with hostPath.
+## hostPath is not an ideal volume type for production env. 
+kind: PersistentVolumeClaim
+apiVersion: v1 
+metadata:
+  name: pv-vol-claim-500mi
+spec:
+  accessModes:
+    - ReadWriteOnce
+    
+  resources:
+    requests:
+      storage: 500Mi
+  storageClassName: google-storage # this storage class name comes from storage class definition. 

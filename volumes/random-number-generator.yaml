@@ -1,3 +1,4 @@
+## this pod definition file shows how the create a volume and mount an volume. 
 kind: Pod
 apiVersion: v1 
 metadata:

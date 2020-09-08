@@ -1,0 +1,13 @@
+## this PersistentVolume definition file shows how to create a PersistentVolume with hostPath.
+## hostPath is not an ideal volume type for production env. 
+kind: PersistentVolume
+apiVersion: v1 
+metadata:
+  name: Persistent-Volume
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/data    

@@ -1,0 +1,27 @@
+apiVersion: apps/v1 ## version is apps/v1
+kind: Deployment
+metadata:
+  name: nginx-pod-deployment
+  labels:
+    type: front-end 
+    enviroment: dev 
+  
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: nginx-pod-replica-set
+      labels:
+        type: front-end ## this label is given as selector  
+        enviroment: dev 
+    spec:
+      containers:
+        - name: nginx-pod
+          image: nginx
+      subdomain: nginx-headless-service
+      hostname: nginx-pod
+          
+  selector:
+    matchLabels:
+      type: front-end ## this label is given as selector  
+      enviroment: dev
