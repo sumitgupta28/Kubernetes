@@ -6,6 +6,9 @@
 
 - [Security](/configurations/security/README.md)
 - [Service Account](/configurations/service-account/README.md)
+- [Node Affinity](/configurations/node-affinity/README.md)
+
+
 - [Enviroment Variable](/enviroment-variable/README.md)
 
 - [Replica Set](/replica-set/README.md)

@@ -34,18 +34,18 @@ value can be pulled from **Config Map**
 
 ```
 - pull value from config map 
-'''
+```
       envFrom:
         - configMapRef:
             name: app-config
-'''
+```
 - pull value from secret
-'''
+```
       valueFrom:
               secretKeyRef:
                 key: 
 
-'''
+```
 
 
 ## Configure a Pod to Use a ConfigMap ##
