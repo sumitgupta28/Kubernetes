@@ -21,7 +21,7 @@
 - [Jobs](/jobs/README.md)
 
 - [Networking](/networking/README.md)
-- [Observability](/observability/README.md)
+- [Observability](/Observability/README.md)
 
 - [Volumes](/volumes/README.md)
 
