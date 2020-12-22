@@ -16,7 +16,7 @@
 - [Multi Container Pod](/multi-container-pod/README.md)
 
 - [Namespace](/namespace/README.md)
-- [Services](/service/README.md)
+- [Services](/Service/README.md)
 
 - [Jobs](/jobs/README.md)
 
