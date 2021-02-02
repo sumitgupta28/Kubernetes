@@ -38,7 +38,7 @@ spec:
 ```
 
 
-- here in port section only mendetory value is port.
+- here in port section only mandatory value is port.
 - if target port is not assigned considerd same value as port.
 - if nodeport is not defined , and random port will be assigned. 
 
